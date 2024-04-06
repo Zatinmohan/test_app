@@ -1,9 +1,11 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_app/gen/assets.gen.dart';
 import 'package:test_app/pages/login_page/constants/text_field_styles.dart';
 import 'package:test_app/routes/constants/routes_name.dart';
 import 'package:test_app/utils/color_constants.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 part '../view/widgets/login_info_widget.dart';
 part 'widgets/login_text_field.dart';

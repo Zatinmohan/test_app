@@ -69,15 +69,21 @@ class CustomTextStyle extends StatelessWidget {
                     fontSize: fontSize,
                   )),
           TextSpan(
-            text: phoneNumber,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: ColorConstants.kPrimaryColor,
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.w400,
-                  decoration: TextDecoration.underline,
-                  decorationColor: ColorConstants.kPrimaryColor,
-                ),
-          ),
+              text: phoneNumber,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: ColorConstants.kPrimaryColor,
+                    fontSize: fontSize,
+                    fontWeight: FontWeight.w400,
+                    decoration: TextDecoration.underline,
+                    decorationColor: ColorConstants.kPrimaryColor,
+                  ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () async {
+                  final String url = "tel:+91$phoneNumber";
+                  if (await canLaunchUrlString(url)) {
+                    await launchUrlString(url);
+                  }
+                }),
         ],
       ),
     );

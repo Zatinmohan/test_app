@@ -119,7 +119,14 @@ class _FileUploadPageState extends State<FileUploadPage> {
                         titleColor: Colors.black,
                         onTap: () {
                           final image = ref.read(imagePickerProvider);
-                          _onViewPressed(image, ref);
+                          if (image.hasError) {
+                            Utilities.showSnackbar(
+                              context: context,
+                              message: image.error.toString(),
+                            );
+                          } else {
+                            _onViewPressed(image, ref);
+                          }
                         },
                       ),
                     ],

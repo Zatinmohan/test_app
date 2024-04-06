@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_app/pages/main_page/view/states/image_picker_states.dart';
 
@@ -43,8 +44,11 @@ class ImagePickerNotifier extends AsyncNotifier<ImagePickerState> {
       } else {
         state = const AsyncData(ImagePickerState.success());
       }
+    } on PlatformException catch (error) {
+      state = AsyncError(error.message.toString(), StackTrace.current);
+      rethrow;
     } catch (error) {
-      state = AsyncError(error, StackTrace.current);
+      state = AsyncError(error.toString(), StackTrace.current);
       rethrow;
     }
   }
